@@ -5,6 +5,8 @@ AI-powered web application that analyzes resumes against job descriptions and pr
 ## Overview
 This project helps job seekers compare their resumes with job descriptions, identify missing keywords, and receive AI-generated improvement suggestions to improve ATS compatibility.
 
+<img width="1920" height="875" alt="Resume_JD_Matcher" src="https://github.com/user-attachments/assets/947f6180-00f7-4d5d-bd39-0dc700368f53" />
+
 ## Features
 - Resume upload
 - Job description input
