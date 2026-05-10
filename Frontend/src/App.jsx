@@ -7,48 +7,42 @@ function App() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [step, setStep] = useState("");
-     
+
   const sleep = (ms) => new Promise((res) => setTimeout(res, ms));
   const handleSubmit = async () => {
     if (!file || !jd) {
-    alert("Please upload resume and add JD");
-    return;
-  }
-       
+      alert("Please upload resume and add JD");
+      return;
+    }
+
     setLoading(true);
     setData(null);
     setStep("Parsing resume...");
-     try {
-    const formData = new FormData();
-    formData.append("resume", file);
-    formData.append("jd", jd);
+    try {
+      const formData = new FormData();
+      formData.append("resume", file);
+      formData.append("jd", jd);
 
+      const apiCall = await axios.post(
+        "http://localhost:5000/analyze",
+        formData,
+      );
 
-    const apiCall = await axios.post(
-      "http://localhost:5000/analyze",
-      formData
-    );
+      await sleep(700);
+      setStep("Matching skills...");
 
-     await sleep(700);
-    setStep("Matching skills...");
+      await sleep(700);
+      setStep("Generating AI suggestions...");
 
-    // Step 2
-    await sleep(700);
-    setStep("Generating AI suggestions...");
+      const res = await apiCall;
 
- const res = await apiCall;
-
-    setData(res.data);
-
-  } catch (error) {
-    console.error("API Error:", error);
-
-  } finally {
-    
-    setLoading(false);
-    setStep("");
-  }
-    
+      setData(res.data);
+    } catch (error) {
+      console.error("API Error:", error);
+    } finally {
+      setLoading(false);
+      setStep("");
+    }
   };
 
   return (
@@ -79,25 +73,25 @@ function App() {
           className="w-full p-3 rounded-lg bg-black/30 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
 
-       <button
-  onClick={handleSubmit}
-  disabled={loading}
-  className="mt-4 w-full bg-indigo-500 hover:bg-indigo-600 
+        <button
+          onClick={handleSubmit}
+          disabled={loading}
+          className="mt-4 w-full bg-indigo-500 hover:bg-indigo-600 
              disabled:bg-gray-500 transition-all py-2 rounded-lg font-semibold"
->
-  {loading ? "Analyzing..." : "Analyze Resume"}
-</button>
-          {loading && (
-  <div className="mt-6 flex flex-col items-center gap-4">
-    {/* Spinner */}
-    <div className="w-12 h-12 border-4 border-indigo-400 border-t-transparent rounded-full animate-spin"></div>
+        >
+          {loading ? "Analyzing..." : "Analyze Resume"}
+        </button>
+        {loading && (
+          <div className="mt-6 flex flex-col items-center gap-4">
+            {/* Spinner */}
+            <div className="w-12 h-12 border-4 border-indigo-400 border-t-transparent rounded-full animate-spin"></div>
 
-    {/* Step Text */}
-    <p className="text-lg text-indigo-300 font-medium animate-pulse">
-      {step}
-    </p>
-  </div>
-)}
+            {/* Step Text */}
+            <p className="text-lg text-indigo-300 font-medium animate-pulse">
+              {step}
+            </p>
+          </div>
+        )}
       </div>
 
       {/* RESULT SECTION */}
@@ -122,7 +116,7 @@ function App() {
             {/* MATCHED */}
             <div className="bg-white/10 p-5 rounded-xl border border-green-400/30">
               <h3 className="text-green-400 font-semibold mb-3">
-                 Matched Skills
+                Matched Skills
               </h3>
 
               <div className="flex flex-wrap gap-2">

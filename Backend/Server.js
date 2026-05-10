@@ -26,7 +26,7 @@ function preprocess(text) {
   return tokens;
 }
 
-// -----------------------------
+// ----------------------------
 // COSINE SIMILARITY
 // -----------------------------
 
@@ -200,10 +200,10 @@ app.post("/analyze", upload.single("resume"), async (req, res) => {
       ai: aiData,
     });
   } catch (err) {
-    console.error("🔥 SERVER ERROR:", err); // 👈 ADD THIS LINE
+    console.error("🔥 SERVER ERROR:", err);
 
     res.status(500).json({
-      error: err.message, // 👈 send real error to frontend
+      error: err.message,
     });
   }
 });
