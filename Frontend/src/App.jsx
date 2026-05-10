@@ -23,14 +23,14 @@ function App() {
       formData.append("resume", file);
       formData.append("jd", jd);
 
-      // const apiCall = await axios.post(
-      //   "https://ai-resume-jd-matcher-backend.onrender.com/analyze",
-      //   formData,
-      // );
       const apiCall = await axios.post(
-        "http://localhost:5000/analyze",
+        "https://ai-resume-jd-matcher-backend.onrender.com/analyze",
         formData,
       );
+      // const apiCall = await axios.post(
+      //   "http://localhost:5000/analyze",
+      //   formData,
+      // );
       await sleep(700);
       setStep("Matching skills...");
 
