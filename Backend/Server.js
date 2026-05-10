@@ -140,9 +140,9 @@ async function getAISuggestions(resume, jd) {
       summary: "AI generated",
     };
   } catch (err) {
-    console.error("⚠️ OpenAI Error:", err.response?.status);
+    console.error("OpenAI Error:", err.response?.status);
 
-    // ✅ fallback (IMPORTANT)
+    // fallback
     return {
       improvements: [
         "Add more relevant skills from JD",
@@ -200,7 +200,7 @@ app.post("/analyze", upload.single("resume"), async (req, res) => {
       ai: aiData,
     });
   } catch (err) {
-    console.error("🔥 SERVER ERROR:", err);
+    console.error("SERVER ERROR:", err);
 
     res.status(500).json({
       error: err.message,

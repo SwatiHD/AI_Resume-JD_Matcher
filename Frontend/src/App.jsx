@@ -23,14 +23,14 @@ function App() {
       formData.append("resume", file);
       formData.append("jd", jd);
 
+      // const apiCall = await axios.post(
+      //   "https://ai-resume-jd-matcher-backend.onrender.com/analyze",
+      //   formData,
+      // );
       const apiCall = await axios.post(
-        "https://ai-resume-jd-matcher-backend.onrender.com/analyze",
+        "http://localhost:5000/analyze",
         formData,
       );
-      // const apiCall = await axios.post(
-      //         "http://localhost:5000/analyze",
-      //         formData,
-      //       );
       await sleep(700);
       setStep("Matching skills...");
 
@@ -70,10 +70,10 @@ function App() {
 
         <textarea
           rows="6"
-          placeholder="Paste Job Description..."
+          placeholder="Paste Job Description here..."
           value={jd}
           onChange={(e) => setJd(e.target.value)}
-          className="w-full p-3 rounded-lg bg-black/30 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          className="w-full p-3 rounded-lg bg-blue-100/50 border border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
 
         <button
