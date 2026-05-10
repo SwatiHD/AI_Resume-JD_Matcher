@@ -27,7 +27,10 @@ function App() {
         "https://ai-resume-jd-matcher-backend.onrender.com/analyze",
         formData,
       );
-
+      // const apiCall = await axios.post(
+      //         "http://localhost:5000/analyze",
+      //         formData,
+      //       );
       await sleep(700);
       setStep("Matching skills...");
 
@@ -49,7 +52,7 @@ function App() {
     <div className="min-h-screen flex flex-col items-center p-6">
       {/* HEADER */}
       <h1 className="text-4xl font-bold mb-6 bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
-        AI Resume Matcher
+        AI Resume-JD Matcher
       </h1>
 
       {/* INPUT CARD */}
